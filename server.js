@@ -11,7 +11,8 @@ app.engine('handlebars', extendexhdbInstance.engine);
 app.set('view engine', 'handlebars')
 
 app.get('/', (req, res) => {
-    res.send("Hello World")
+    // res.send("Hello World")
+    res.render('home')
 })
 
 app.listen(5000)
