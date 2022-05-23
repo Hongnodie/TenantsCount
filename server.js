@@ -14,21 +14,6 @@ app.set('view engine', 'handlebars');
 
 app.use('/expshare', expRouter);
 
-app.get('/', (req, res) => {
-    // res.send("Hello World")
-    const expthreads = [{
-      title: 'Test experience 1',
-      createdAt: new Date(),
-      description: 'Test description 1',
-    },
-    {
-      title: 'Test experience 2',
-      createdAt: new Date(),
-      description: 'Test description 2',
-    }];
-    res.render('./blogSection/blogHomePage', {
-      expthreads: expthreads
-    })
-})
+
 
 app.listen(5000)
