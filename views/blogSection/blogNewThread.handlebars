@@ -1,1 +1,28 @@
-adsada
+<p>New Threads created on this page</p>
+
+<div class="container">
+    <h1 class="mb-4">Create New Thread of Your Previous Living Experience</h1>
+    <form action="/expshare" method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" class="form-control" required>           
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" class="form-control"></textarea> 
+        </div>
+
+        <div class="form-group">
+            <label for="markdown">Markdown</label>
+            <textarea name="markdown" id="markdown" class="form-control"></textarea> 
+        </div>
+
+        <a href="/expshare" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    
+    
+
+</div>
+
