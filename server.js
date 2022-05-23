@@ -18,13 +18,13 @@ app.get('/', (req, res) => {
     // res.send("Hello World")
     const expthreads = [{
       title: 'Test experience 1',
-      createdAt: Date.now(),
-      description: 'Test',
+      createdAt: new Date(),
+      description: 'Test description 1',
     },
     {
       title: 'Test experience 2',
-      createdAt: Date.now(),
-      description: 'Test',
+      createdAt: new Date(),
+      description: 'Test description 2',
     }];
     res.render('blogPage', {
       expthreads: expthreads
