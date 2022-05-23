@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const threadDb = require('../models/blog/threadsModel')
+
 
 router.get('/', (req, res) => {
     // res.send("Hello World")
@@ -22,8 +24,23 @@ router.get('/new', (req, res) => {
     // res.send('router result - Blog section main page');
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+  const threads = new threadDb({
+    title: req.body.title,
+    description: req.body.description,
+    markdown: req.body.markdown
+  })
+  try {
+    updatedThreads = await threads.save();
+    res.redirect(`/expshare/${updatedThreads.id}`)
+  } catch (e) {
+    res.render('./blogSection/blogNewThread', {expthreads: threads})
+  }
+  
+});
 
+router.get('/:id', (req, res) => {
+  
 });
 
 module.exports = router;
