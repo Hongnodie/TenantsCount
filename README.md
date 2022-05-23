@@ -78,5 +78,18 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### Function of npm packages (Brief + Link/Address)
 
 Concurrently - Run multiple commands concurrently
-See [Concurrently](https://www.npmjs.com/package/concurrently) at https://www.npmjs.com/package/concurrently
+See [npm-Concurrently](https://www.npmjs.com/package/concurrently) at https://www.npmjs.com/package/concurrently
 <br>
+
+Cors - eliminates CORS error and enable "cross origin resource sharing"
+See [npm-Cors](https://www.npmjs.com/package/cors) at https://www.npmjs.com/package/cors
+<br>
+
+bcrypt - 
+
+### Aborted npm from code polish (name + recommender)
+
+[body-parser](https://www.npmjs.com/package/body-parser) by rennemannd
+[morgan](https://www.npmjs.com/package/morgan) by rennemannd
+
+
