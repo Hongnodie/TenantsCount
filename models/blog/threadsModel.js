@@ -19,6 +19,6 @@ const threadSchema = new Schema({
     }
 });
 
-const threadDb = model('threadDb', threadSchema);
+const threadModel = model('threadDb', threadSchema);
 
-module.exports = threadDb;
+module.exports = threadModel;

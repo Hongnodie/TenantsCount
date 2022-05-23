@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const threadDb = require('../models/blog/threadsModel')
+const ThreadModel = require('../models/blog/threadsModel')
 
 
 router.get('/', (req, res) => {
@@ -20,27 +20,29 @@ router.get('/', (req, res) => {
 })
 
 router.get('/new', (req, res) => {
-    res.render('./blogSection/blogNewThread');
+    res.render('./blogSection/blogNewThread', {threads: new ThreadModel()});
     // res.send('router result - Blog section main page');
 });
 
 router.post('/', async (req, res) => {
-  const threads = new threadDb({
+  let threads = new ThreadModel({
     title: req.body.title,
     description: req.body.description,
     markdown: req.body.markdown
   })
+
   try {
     updatedThreads = await threads.save();
-    res.redirect(`/expshare/${updatedThreads.id}`)
+    res.redirect(`/expshare/${threads.id}`)
   } catch (e) {
-    res.render('./blogSection/blogNewThread', {expthreads: threads})
+    console.log(e);
+    res.render('./blogSection/blogNewThread', {threads: threads})
   }
   
 });
 
 router.get('/:id', (req, res) => {
-  
+  res.send(req.params.id)
 });
 
 module.exports = router;
