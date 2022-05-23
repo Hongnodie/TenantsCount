@@ -5,20 +5,26 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devstart": "nodemon server.js"
+    "install-all": "concurrently \"npm install\" \"cd client && npm install\"",
+    "client": "cd client && npm start",
+    "server": "nodemon server/server.js",
+    "devstart": "concurrently \"nodemon server/server.js\" \"cd client && npm run start\"",
+    "build": "cd client && npm build",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hongnodie/TenantsCount.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Grant Gan & Hongnodie",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Hongnodie/TenantsCount/issues"
   },
   "homepage": "https://github.com/Hongnodie/TenantsCount#readme",
   "dependencies": {
+    "concurrently": "^4.1.0",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "mongoose": "^6.3.4"
