@@ -13,8 +13,9 @@ const extendexhdbInstance = exhdbInstance.create({});
 app.engine('handlebars', extendexhdbInstance.engine);
 app.set('view engine', 'handlebars');
 
+// Allow to extract html element from form object, i.e. req.body.decription
+app.use(express.urlencoded({ extended: false }));
+
 app.use('/expshare', expRouter);
-
-
 
 app.listen(5000)
