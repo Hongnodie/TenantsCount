@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
       createdAt: new Date(),
       description: 'Test description 2',
     }];
-    res.render('blogPage', {
+    res.render('./blogSection/blogHomePage', {
       expthreads: expthreads
     })
 })
