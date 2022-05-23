@@ -2,6 +2,7 @@ const express = require('express');
 const exhdbInstance = require('express-handlebars');
 
 const expRouter = require('./routes/expshare');
+const dbConnect = require('./other/dbConnect');
 
 const app = express();
 
