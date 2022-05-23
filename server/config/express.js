@@ -1,34 +1,43 @@
-const path = require('path'),
-    express = require('express'),
-    mongoose = require('mongoose'),
-    morgan = require('morgan'),
-    bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+/* initiate the server knox */
+
+/* first introduce all the npm or dependencies */
+const path = require('path');
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+const pinRoute = require('../routes/mapview/pins');
+const userRoute = require('../routes/mapview/users');
 
 module.exports.init = () => {
-    /* 
-        connect to database
-        - reference README for db uri
-    */
+    /* connect to database */
     mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
-        useNewUrlParser: true
-    });
-    mongoose.set('useCreateIndex', true);
-    mongoose.set('useFindAndModify', false);
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        // useCreateIndex: true,
+        // useFindAndModify: false
+    })
+    .then(() => {
+		console.log("MongoDB Connected Successfully!!");
+	})
+	.catch((e) => {
+		console.log(e);
+	});;
 
-    // initialize app
+    // initialize backend(server) - activating express as function
     const app = express();
 
-    // enable request logging for development debugging
-    app.use(morgan('dev'));
-
-    // body parsing middleware
-    app.use(bodyParser.json());
+    // middleware add and apply before router/controller
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
+    app.use(cors());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/mapview/pins', pinRoute);
+    app.use('/mapview/users', userRoute);
 
     if (process.env.NODE_ENV === 'production') {
+        console.log('running in production mode');
         // Serve any static files
         app.use(express.static(path.join(__dirname, '../../client/build')));
 
@@ -36,6 +45,8 @@ module.exports.init = () => {
         app.get('*', function(req, res) {
             res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
         });
+    } else {
+        console.log('running in development mode');
     }
 
     return app
