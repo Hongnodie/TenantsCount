@@ -20,3 +20,5 @@ const threadSchema = new Schema({
 });
 
 const threadDb = model('threadDb', threadSchema);
+
+module.exports = threadDb;
