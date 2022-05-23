@@ -17,12 +17,17 @@ app.use('/expshare', expRouter);
 app.get('/', (req, res) => {
     // res.send("Hello World")
     const expthreads = [{
-      title: 'Test experience',
+      title: 'Test experience 1',
+      createdAt: Date.now(),
+      description: 'Test',
+    },
+    {
+      title: 'Test experience 2',
       createdAt: Date.now(),
       description: 'Test',
     }];
     res.render('blogPage', {
-      ...expthreads,
+      expthreads: expthreads
     })
 })
 

@@ -7,7 +7,9 @@
     <p>something shows here</p>
     {{#each expthreads as |expthread| }}
         <div class="card mt-4">
-
+            {{expthread.title}}
+            {{expthread.createdAt}}
+            {{expthread.description}}
         </div>
     
     {{/each}}
