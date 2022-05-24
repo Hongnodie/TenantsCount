@@ -78,14 +78,17 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### Function of npm packages (Brief + Link/Address)
 
 Concurrently - Run multiple commands concurrently
-See [npm-Concurrently](https://www.npmjs.com/package/concurrently) at https://www.npmjs.com/package/concurrently
+Click to see [npm-Concurrently](https://www.npmjs.com/package/concurrently) or visit https://www.npmjs.com/package/concurrently
 <br>
 
 Cors - eliminates CORS error and enable "cross origin resource sharing"
-See [npm-Cors](https://www.npmjs.com/package/cors) at https://www.npmjs.com/package/cors
+Click to see [npm-Cors](https://www.npmjs.com/package/cors) or visit https://www.npmjs.com/package/cors
 <br>
 
 bcrypt - 
+
+react-map-gl - compatible with mapbox to enable map insertion
+Click to see [react-map-gl](https://www.npmjs.com/package/react-map-gl) or visit https://www.npmjs.com/package/react-map-gl
 
 ### Aborted npm from code polish (name + recommender)
 
