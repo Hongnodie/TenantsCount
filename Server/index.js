@@ -12,6 +12,7 @@ const pinRoute = require('./Routes/Mapview/pinRoute');
 
 dotenv.config();
 
+// MIDDLEWARE - parsing object
 app.use(express.json());
 
 const connect = async () => {
@@ -34,7 +35,7 @@ app.get("/", (req,res)=>{
     res.send("hello")
 })
 
-// MIDDLEWARE
+// MIDDLEWARE -routing
 app.use('/user', userRoute);
 app.use('/auth', authRoute);
 app.use('/hotel', hotelRoute);
