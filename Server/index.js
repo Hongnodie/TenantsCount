@@ -17,7 +17,7 @@ const connect = async () => {
     .catch((err)=>{console.log(err)});
 }
 
-// Disconnect resolved by re-connect
+// TRACK Disconnect or re-connect
 mongoose.connection.on("disconnected", ()=> {
     console.log("mongoDB disconnected")
 })
