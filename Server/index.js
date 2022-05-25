@@ -10,13 +10,18 @@ dotenv.config();
 
 app.use(express.json());
 
-mongoose
+const connect = async () => {
+    await mongoose
     .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> { console.log('mongoDB connected'); })
     .catch((err)=>{console.log(err)});
+}
+
+
 
 app.use('/mapview', pinRoute)
 
 app.listen(5000,()=>{
+    connect();
     console.log('server is running on node.js plus nodemon');
 })
