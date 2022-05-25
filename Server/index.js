@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const app = express();
 
-const pinRoute = require('./Routes/Mapview/pin');
-const userRoute = require('./Routes/user');
+const pinRoute = require('./Routes/Mapview/pinRoute');
+const userRoute = require('./Routes/userRoute');
 
 dotenv.config();
 
