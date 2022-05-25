@@ -1,7 +1,9 @@
 const express = require("express");
+const app = express();
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const app = express();
+const cookieParser = require('cookie-parser');
 
 
 const userRoute = require('./Routes/userRoute');
@@ -14,6 +16,7 @@ dotenv.config();
 
 // MIDDLEWARE - parsing object
 app.use(express.json());
+app.use(cookieParser());
 
 const connect = async () => {
     await mongoose

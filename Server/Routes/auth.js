@@ -30,13 +30,20 @@ router.post("/login", async (req, res) => {
         const passwordCorrect = await bcrypt.compare(req.body.password, user.password);
         if(!passwordCorrect) return res.status(500).json("password is incorrect");
 
+        // generate token to save endless login efforts when jumping from page to page
+        const token = jwt.sign({id:user.id, isAdmin:user.isAdmin}, process.env.SECRET_KEY);
+
         // hide password and admin condition from user
         const {password, isAdmin, ...otherDetails} = user._doc;
 
-        // generate token to save endless login efforts when jumping from page to page
-
         // send as json object
-		res.status(200).json({otherDetails});
+		res
+            .cookie("access_token",token, {
+                // prevent visiting from local storage
+                httpOnly: true,
+            })
+            .status(200)
+            .json({otherDetails});
 	} catch (error) {
 		res.status(500).json(error);
 	}
