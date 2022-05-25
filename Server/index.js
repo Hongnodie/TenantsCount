@@ -5,6 +5,7 @@ const app = express();
 
 const pinRoute = require('./Routes/Mapview/pinRoute');
 const userRoute = require('./Routes/userRoute');
+const authRoute = require('./Routes/auth');
 
 dotenv.config();
 
@@ -30,7 +31,10 @@ app.get("/", (req,res)=>{
     res.send("hello")
 })
 
+// MIDDLEWARE
 app.use('/mapview', pinRoute)
+
+app.use('/auth', authRoute)
 
 app.listen(5000,()=>{
     connect();
