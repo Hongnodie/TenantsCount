@@ -17,7 +17,14 @@ const connect = async () => {
     .catch((err)=>{console.log(err)});
 }
 
+// Disconnect resolved by re-connect
+mongoose.connection.on("disconnected", ()=> {
+    console.log("mongoDB disconnected")
+})
 
+mongoose.connection.on("connected", ()=> {
+    console.log("mongoDB connected")
+})
 
 app.use('/mapview', pinRoute)
 
