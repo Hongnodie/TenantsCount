@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
 	{
+		_id: {
+			// Stringify to be compatible with jwttoken
+			type: String,
+		},
 		username: {
 			type: String,
 			require: true,

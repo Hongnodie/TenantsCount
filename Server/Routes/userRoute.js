@@ -1,5 +1,11 @@
 const router = require("express").Router();
 const User = require("../Models/User");
+const { verifyToken } = require("../Other/Utilities/token");
+
+// TEST
+router.get("/checktoken", (req, res) => {
+    res.send("token works")
+})
 
 // UPDATE
 router.put("/:id", async (req, res) => {
@@ -43,5 +49,7 @@ router.get("/",async (req, res) => {
 		res.status(500).json(error);
 	}
 })
+
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../Models/User");
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const { signToken } = require('../Other/Utilities/token');
 
 router.post("/register", async (req, res) => {
     try {
@@ -31,14 +31,13 @@ router.post("/login", async (req, res) => {
         if(!passwordCorrect) return res.status(500).json("password is incorrect");
 
         // generate token to save endless login efforts when jumping from page to page
-        const token = jwt.sign({id:user.id, isAdmin:user.isAdmin}, process.env.SECRET_KEY);
+        const token = signToken(user);
 
         // hide password and admin condition from user
         const {password, isAdmin, ...otherDetails} = user._doc;
 
         // send as json object
-		res
-            .cookie("access_token",token, {
+		res.cookie("access_token",token, {
                 // prevent visiting from local storage
                 httpOnly: true,
             })
