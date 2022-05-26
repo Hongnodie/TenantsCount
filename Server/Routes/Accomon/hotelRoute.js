@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const Hotel = require("../../Models/Accomon/Hotel");
+const { HotelModel } = require("../../Models/Accomon/Hotel");
 const { verifyToken, verifyUser, verifyAdmin } = require("../../Other/Utilities/token");
 
 // CREATE
 router.post("/", verifyAdmin, async (req, res) => {
-    const newHotel = new Hotel(req.body);
+    const newHotel = new HotelModel(req.body);
     try {
 		const savedHotel = await newHotel.save();
 		res.status(200).json(savedHotel);
@@ -17,7 +17,7 @@ router.post("/", verifyAdmin, async (req, res) => {
 router.put("/:id", verifyAdmin, async (req, res) => {
     try {
         // findByIdAndUpdate return the previous data from DB, thus countered with new: true
-		const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id, {
+		const updatedHotel = await HotelModel.findByIdAndUpdate(req.params.id, {
             $set: req.body
         }, {new: true});
 		res.status(200).json(updatedHotel);
@@ -29,7 +29,7 @@ router.put("/:id", verifyAdmin, async (req, res) => {
 // DELETE
 router.delete("/:id", verifyAdmin, async (req, res) => {
     try {
-		await Hotel.findByIdAndDelete(req.params.id);
+		await HotelModel.findByIdAndDelete(req.params.id);
 		res.status(200).json("Hotel has been deleted");
 	} catch (error) {
 		res.status(500).json(error);
@@ -39,7 +39,7 @@ router.delete("/:id", verifyAdmin, async (req, res) => {
 // GET
 router.get("/:id", async (req, res) => {
     try {
-		const hotels= await Hotel.findById(req.params.id);
+		const hotels= await HotelModel.findById(req.params.id);
 		res.status(200).json(hotels);
 	} catch (error) {
 		res.status(500).json(error);
@@ -49,7 +49,7 @@ router.get("/:id", async (req, res) => {
 // GETALL
 router.get("/",async (req, res) => {
     try {
-		const hotels= await Hotel.find();
+		const hotels= await HotelModel.find();
 		res.status(200).json(hotels);
 	} catch (error) {
 		res.status(500).json(error);
