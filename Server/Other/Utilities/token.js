@@ -36,6 +36,7 @@ module.exports = {
             if(req.user.isAdmin) {
                 next()
             } else {
+                console.log(res);
                 return res.status(403).json("This is not an admin account)");
             }
         })
