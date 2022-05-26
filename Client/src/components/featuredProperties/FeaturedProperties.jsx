@@ -19,7 +19,7 @@ const FeaturedProperties = () => {
                 />
                 <span className="fpName">{item.hotelname}</span>
                 <span className="fpCity">{item.hotelcity}</span>
-                <span className="fpPrice">Starting from {item.cheapestprice}</span>
+                <span className="fpPrice">Starting from ${item.cheapestprice}</span>
                 <div className="fpRating">
                   <button>{item.rating}</button>
                   <span>Excellent</span>
