@@ -1,10 +1,14 @@
 const router = require("express").Router();
 const User = require("../Models/User");
-const { verifyToken } = require("../Other/Utilities/token");
+const { verifyToken, verifyUser } = require("../Other/Utilities/token");
 
 // TEST
 router.get("/checktoken", verifyToken, (req, res) => {
     res.send("token works")
+})
+
+router.get("/checkuser/:id", verifyUser, (req, res) => {
+    res.send("user checked from token info")
 })
 
 // UPDATE
