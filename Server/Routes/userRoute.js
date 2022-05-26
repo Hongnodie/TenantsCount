@@ -3,7 +3,7 @@ const User = require("../Models/User");
 const { verifyToken } = require("../Other/Utilities/token");
 
 // TEST
-router.get("/checktoken", (req, res) => {
+router.get("/checktoken", verifyToken, (req, res) => {
     res.send("token works")
 })
 
