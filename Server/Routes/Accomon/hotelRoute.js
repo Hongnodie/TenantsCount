@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { HotelModel } = require("../../Models/Accomon/Hotel");
+const HotelModel = require("../../Models/Accomon/Hotel");
 const { verifyToken, verifyUser, verifyAdmin } = require("../../Other/Utilities/token");
 
 // CREATE
@@ -46,7 +46,7 @@ router.get("/:id", async (req, res) => {
 	}
 })
 
-// GETALL
+// GET ALL
 router.get("/",async (req, res) => {
     try {
 		const hotels= await HotelModel.find();

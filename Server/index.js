@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const userRoute = require('./Routes/userRoute');
 const authRoute = require('./Routes/auth');
 const hotelRoute = require('./Routes/Accomon/hotelRoute');
+const hotelroomRoute = require('./Routes/Accomon/hotelroomRoute');
 const householdRoute = require('./Routes/Accomon/householdRoute');
 const pinRoute = require('./Routes/Mapview/pinRoute');
 
@@ -42,6 +43,7 @@ app.get("/", (req,res)=>{
 app.use('/user', userRoute);
 app.use('/auth', authRoute);
 app.use('/hotel', hotelRoute);
+app.use('/hotelroom', hotelroomRoute);
 app.use('/household', householdRoute);
 app.use('/mapview', pinRoute);
 
