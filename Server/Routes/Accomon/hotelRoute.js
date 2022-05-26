@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Hotel = require("../../Models/Accomon/Hotel");
+const { verifyToken, verifyUser, verifyAdmin } = require("../../Other/Utilities/token");
 
 // CREATE
-router.post("/", async (req, res) => {
+router.post("/", verifyAdmin, async (req, res) => {
     const newHotel = new Hotel(req.body);
     try {
 		const savedHotel = await newHotel.save();
@@ -13,7 +14,7 @@ router.post("/", async (req, res) => {
 })
 
 // UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyAdmin, async (req, res) => {
     try {
         // findByIdAndUpdate return the previous data from DB, thus countered with new: true
 		const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id, {
@@ -26,7 +27,7 @@ router.put("/:id", async (req, res) => {
 })
 
 // DELETE
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyAdmin, async (req, res) => {
     try {
 		await Hotel.findByIdAndDelete(req.params.id);
 		res.status(200).json("Hotel has been deleted");
@@ -36,7 +37,7 @@ router.delete("/:id", async (req, res) => {
 })
 
 // GET
-router.get("/:id",async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
 		const hotels= await Hotel.findById(req.params.id);
 		res.status(200).json(hotels);
