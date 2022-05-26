@@ -3,7 +3,7 @@ import "./mailList.css"
 const MailList = () => {
   return (
     <div className="mail">
-      <h1 className="mailTitle">Save time, save money!</h1>
+      <h1 className="mailTitle">Make Data Crystal Clear!</h1>
       <span className="mailDesc">Sign up and we'll send the best deals to you</span>
       <div className="mailInputContainer">
         <input type="text" placeholder="Your Email" />
