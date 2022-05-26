@@ -52,7 +52,7 @@ router.get("/",async (req, res) => {
     try {
 		const hotels= await HotelModel.find({
 			...otherQuerys,
-			cheapestprice: {$gt:min | 1, $lt:max || 999}
+			// cheapestprice: {$gt:min | 1, $lt:max || 999}
 		}).limit(req.query.limit);
 		res.status(200).json(hotels);
 	} catch (error) {

@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <span className="logo">TenantsCount</span>
+        <span className="logo"><a href="/" style={{color:"inherit", textDecoration:"none"}}>TenantsCount</a></span>
         <div className="navItems">
           <button className="navButton">Register</button>
           <button className="navButton">Login</button>
