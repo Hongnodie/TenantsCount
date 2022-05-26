@@ -31,4 +31,13 @@ module.exports = {
             }
         })
     },
+    verifyAdmin: function (res, req, next) {
+        verifyToken(res, req, next, ()=>{
+            if(req.user.isAdmin) {
+                next()
+            } else {
+                return res.status(403).json("This is not an admin account)");
+            }
+        })
+    },
 };

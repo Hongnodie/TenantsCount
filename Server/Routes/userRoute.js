@@ -1,18 +1,18 @@
 const router = require("express").Router();
 const User = require("../Models/User");
-const { verifyToken, verifyUser } = require("../Other/Utilities/token");
+const { verifyToken, verifyUser, verifyAdmin } = require("../Other/Utilities/token");
 
 // TEST
-router.get("/checktoken", verifyToken, (req, res) => {
-    res.send("token works")
-})
+// router.get("/checktoken", verifyToken, (req, res) => {
+//     res.send("token works")
+// })
 
-router.get("/checkuser/:id", verifyUser, (req, res) => {
-    res.send("user checked from token info")
-})
+// router.get("/checkuser/:id", verifyUser, (req, res) => {
+//     res.send("user checked from token info")
+// })
 
 // UPDATE
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyUser, async (req, res) => {
     try {
         // findByIdAndUpdate return the previous data from DB, thus countered with new: true
 		const updatedUser = await User.findByIdAndUpdate(req.params.id, {
@@ -25,7 +25,7 @@ router.put("/:id", async (req, res) => {
 })
 
 // DELETE
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyUser, async (req, res) => {
     try {
 		await User.findByIdAndDelete(req.params.id);
 		res.status(200).json("User has been deleted");
@@ -35,7 +35,7 @@ router.delete("/:id", async (req, res) => {
 })
 
 // GET
-router.get("/:id",async (req, res) => {
+router.get("/:id", verifyUser,async (req, res) => {
     try {
 		const Users= await User.findById(req.params.id);
 		res.status(200).json(Users);
@@ -45,7 +45,7 @@ router.get("/:id",async (req, res) => {
 })
 
 // GETALL
-router.get("/",async (req, res) => {
+router.get("/", verifyAdmin ,async (req, res) => {
     try {
 		const Users= await User.find();
 		res.status(200).json(Users);
