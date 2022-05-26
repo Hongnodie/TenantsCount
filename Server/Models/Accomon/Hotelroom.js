@@ -4,11 +4,11 @@ const HotelRoomSchema = new mongoose.Schema(
 	{
         hotelid: {
 			type: String,
-			require: true,
+			// require: true,
 		},
 		roomtype: {
 			type: String,
-			// require: true,
+			require: true,
 		},
 		price: {
 			type: Number,

@@ -14,6 +14,7 @@ router.post("/:hotelId", verifyAdmin, async (req, res) => {
             await HotelModel.findByIdAndUpdate(hotelId, {
                 $push : {hotelrooms: savedHotelRoom._id}}
                 )
+            res.status(200).json(savedHotelRoom);
         } catch (error) {
             next(error);
 	    } 
@@ -25,7 +26,6 @@ router.post("/:hotelId", verifyAdmin, async (req, res) => {
 // UPDATE
 router.put("/:id", verifyAdmin, async (req, res) => {
     try {
-        // findByIdAndUpdate return the previous data from DB, thus countered with new: true
 		const updatedHotelroom = await HotelroomModel.findByIdAndUpdate(req.params.id, { $set: req.body }, {new: true});
 		res.status(200).json(updatedHotelroom);
 	} catch (error) {
@@ -34,10 +34,21 @@ router.put("/:id", verifyAdmin, async (req, res) => {
 })
 
 // DELETE
-router.delete("/:id", verifyAdmin, async (req, res) => {
+router.delete("/:id/:hotelId", verifyAdmin, async (req, res) => {
+    const hotelId= req.params.hotelId;
     try {
 		await HotelroomModel.findByIdAndDelete(req.params.id);
+        try {
+            
+            await HotelModel.findByIdAndDelete(hotelId, {
+                $pull : {hotelrooms: req.params.id}}
+                )
+            res.status(200).json("Hotel has been deleted this room");
+        } catch (error) {
+            next(error);
+	    } 
 		res.status(200).json("Hotelroom has been deleted");
+
 	} catch (error) {
 		res.status(500).json(error);
 	}
