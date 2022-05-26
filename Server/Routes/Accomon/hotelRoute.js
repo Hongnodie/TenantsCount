@@ -49,7 +49,7 @@ router.get("/:id", async (req, res) => {
 // GET ALL
 router.get("/",async (req, res) => {
     try {
-		const hotels= await HotelModel.find();
+		const hotels= await HotelModel.find(req.query).limit(req.query.limit);
 		res.status(200).json(hotels);
 	} catch (error) {
 		res.status(500).json(error);

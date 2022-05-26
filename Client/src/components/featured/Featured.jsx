@@ -5,7 +5,7 @@ const Featured = () => {
 
   const {data,loadingStatus, error, reFetch} = useFetech("http://localhost:5000/counter/city?cities=London,Berlin,Singapole");
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="featured">
