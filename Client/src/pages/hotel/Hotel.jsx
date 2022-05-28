@@ -29,7 +29,17 @@ const Hotel = () => {
 
   const {data,loadingStatus, error} = useFetech(`http://localhost:5000/hotel/${locationId}`);
 
-  const {dates} = useContext(dispatchContext);
+  // const {dates, options, dispatcher} = useContext(dispatchContext);
+
+  function dayDiff(date1, date2) {
+    const unitimeDiff = Math.abs(date2.getTime() - date1.getTime());
+    const unitimePerDay = 1000 * 60 * 60 * 24;
+    const difDays = Math.ceil(unitimeDiff/unitimePerDay);
+    return difDays;
+  }
+  // dispatcher({payload:{dates, options}});
+  // console.log(dates);
+  // console.log(dayDiff(dates[0].startDate, dates[0].endDate))
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -109,13 +119,13 @@ const Hotel = () => {
               </p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
+              {/* <h1>Perfect for a {durationDays}-night stay!</h1> */}
               <span>
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
               <h2>
-                <b>$945</b> (9 nights)
+                {/* <b>${durationDays * data.cheapestprice * options.room}</b> ({durationDays} nights) */}
               </h2>
               <button>Reserve or Book Now!</button>
             </div>
