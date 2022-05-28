@@ -19,7 +19,7 @@ const useFetech = (url) => {
             setLoadingStatus(false);
         }
         fetchData();
-    },[url])
+    },[])
 
     //  MANUAL FETCH as one-off
     const reFetch = async () => {
