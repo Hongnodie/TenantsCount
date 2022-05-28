@@ -12,10 +12,12 @@ import {
   faCircleXmark,
   faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import useFetech from "../../hooks/useFetch";
+
+import {dispatchContext} from "../../context/dispatchContext";
 
 const Hotel = () => {
   const location = useLocation();
@@ -26,6 +28,8 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
 
   const {data,loadingStatus, error} = useFetech(`http://localhost:5000/hotel/${locationId}`);
+
+  const {dates} = useContext(dispatchContext);
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -86,7 +90,7 @@ const Hotel = () => {
             Book a stay over ${data.cheapestprice} at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
-            {data.hotelphotos.map((photoUrl, i) => (
+            {/* {data.hotelphotos.map((photoUrl, i) => (
               <div className="hotelImgWrapper" key={i}>
                 <img
                   onClick={() => handleOpen(i)}
@@ -95,7 +99,7 @@ const Hotel = () => {
                   className="hotelImg"
                 />
               </div>
-            ))}
+            ))} */}
           </div>
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">

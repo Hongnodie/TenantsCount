@@ -18,7 +18,7 @@ export const dispatchContext = createContext(INITIAL_STATE)
 const actionResponder = (state, action) => {
     switch (action.type) {
         case "newSearch":
-            // All params from search bar
+            // All required params from search bar bundled as payload when parsing
             return action.payload
         case "resetSearch":
             return INITIAL_STATE
@@ -30,15 +30,15 @@ const actionResponder = (state, action) => {
 // USEREDUCER FRAMEWORK BUILD THE RECEIVER [PARAM, RESPONDER] AND PROVIDER
 export const SerachOptionProvider = ({children}) => {
 
-    // "dispatch" is a function but parsed as a property 
-    const [stateValue, dispatch] = useReducer(actionResponder, INITIAL_STATE);
+    // "dispatcher" is a function but parsed as a property 
+    const [stateValue, dispatcher] = useReducer(actionResponder, INITIAL_STATE);
 
     return (
         <dispatchContext.Provider value={{
             hotelcity:stateValue.hotelcity, 
             dates:stateValue.dates, 
             options: stateValue.options, 
-            dispatch}}>
+            dispatcher}}>
             {children}
         </dispatchContext.Provider>)
 }

@@ -17,12 +17,12 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-import {dispatchContext} from "../../context/dispatchContext"
+import {dispatchContext} from "../../context/dispatchContext";
 
 const Header = ({ type }) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
+  const [dates, setDates] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
@@ -47,11 +47,11 @@ const Header = ({ type }) => {
     });
   };
 
-  // const {dispatch} = useContext(dispatchContext)
+  const {dispatcher} = useContext(dispatchContext);
 
   const handleSearch = () => {
-    // dispatch({type:"newSearch", payload:{destination, date, options}});
-    navigate("/hotel", { state: { destination, date, options } });
+    dispatcher({type:"newSearch", payload:{destination, dates, options}});
+    navigate("/hotel", { state: { destination, dates, options } });
   };
 
   return (
@@ -108,16 +108,16 @@ const Header = ({ type }) => {
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
-                >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-                  date[0].endDate,
+                >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
+                  dates[0].endDate,
                   "MM/dd/yyyy"
                 )}`}</span>
                 {openDate && (
                   <DateRange
                     editableDateInputs={true}
-                    onChange={(item) => setDate([item.selection])}
+                    onChange={(item) => setDates([item.selection])}
                     moveRangeOnFirstSelection={false}
-                    ranges={date}
+                    ranges={dates}
                     className="date"
                     minDate={new Date()}
                   />
