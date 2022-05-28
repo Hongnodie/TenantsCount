@@ -7,12 +7,16 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 
+import useFetech from "../../hooks/useFetch";
+
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+
+  const {data,loadingStatus, error, reFetch} = useFetech(`http://localhost:5000/hotel?city=${destination}`);
 
   return (
     <div>
@@ -87,15 +91,10 @@ const List = () => {
             <button>Search</button>
           </div>
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {loadingStatus? "Loading page ..." : (<>
+            {data.map(item => {
+            return <SearchItem item={item} key={item._id} />})}
+            </>)}
           </div>
         </div>
       </div>

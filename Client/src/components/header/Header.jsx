@@ -1,3 +1,5 @@
+// SEARCHBAR SECTION
+
 import {
   faBed,
   faCalendarDays,
@@ -44,7 +46,7 @@ const Header = ({ type }) => {
   };
 
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+    navigate("/hotel", { state: { destination, date, options } });
   };
 
   return (

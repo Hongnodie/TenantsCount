@@ -1,16 +1,16 @@
 import "./searchItem.css";
 
-const SearchItem = () => {
+const SearchItem = ({item}) => {
   return (
     <div className="searchItem">
       <img
-        src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
+        src={item.hotelphotos[0]}
         alt=""
         className="siImg"
       />
       <div className="siDesc">
-        <h1 className="siTitle">Tower Street Apartments</h1>
-        <span className="siDistance">500m from center</span>
+        <h1 className="siTitle">{item.hotelname}</h1>
+        <span className="siDistance">{item.hoteldistance} from center</span>
         <span className="siTaxiOp">Free airport taxi</span>
         <span className="siSubtitle">
           Studio Apartment with Air conditioning
@@ -24,14 +24,17 @@ const SearchItem = () => {
         </span>
       </div>
       <div className="siDetails">
+        {item.hotelrating && 
         <div className="siRating">
           <span>Excellent</span>
-          <button>8.9</button>
-        </div>
+          <button>{item.hotelrating}</button>
+        </div> }
         <div className="siDetailTexts">
-          <span className="siPrice">$112</span>
+          <span className="siPrice">{item.cheapestprice}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <button className="siCheckButton">See availability</button>
+          <a href={`hotel/${item._id}`} >
+            <button className="siCheckButton">See availability</button>
+          </a>
         </div>
       </div>
     </div>
