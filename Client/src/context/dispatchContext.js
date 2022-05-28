@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react";
 
+// SETUP/INITIATE "STATE" PROPERTY TO BE SPREAD AMONG COMPONENTS
 const INITIAL_STATE ={
     hotelcity: undefined,
     dates: [],
@@ -10,9 +11,10 @@ const INITIAL_STATE ={
     }
 };
 
-// USE ANYWHERE
+// USE STATE ANYWHERE - PARSE TO ALL COMPONENTS
 export const dispatchContext = createContext(INITIAL_STATE)
 
+// RENEW STATE BASED ON GIVEN HEADER - as ".type"
 const actionResponder = (state, action) => {
     switch (action.type) {
         case "newSearch":
@@ -25,16 +27,18 @@ const actionResponder = (state, action) => {
     }
 };
 
-export const SCP = ({children}) => {
-    // Job assigned to two components: stateValue & dispatch by the framework defined as useReducer in react npm
+// USEREDUCER FRAMEWORK BUILD THE RECEIVER [PARAM, RESPONDER] AND PROVIDER
+export const SerachOptionProvider = ({children}) => {
+
+    // "dispatch" is a function but parsed as a property 
     const [stateValue, dispatch] = useReducer(actionResponder, INITIAL_STATE);
 
     return (
-        <actionResponder.Provider value={{
+        <dispatchContext.Provider value={{
             hotelcity:stateValue.hotelcity, 
             dates:stateValue.dates, 
             options: stateValue.options, 
             dispatch}}>
             {children}
-        </actionResponder.Provider>)
+        </dispatchContext.Provider>)
 }

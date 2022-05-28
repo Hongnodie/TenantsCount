@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { SCP } from './context/dispatchContext';
+import { SerachOptionProvider } from './context/dispatchContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-//  APPLY dispatcher through the app
+//  APPLY context through the app
 root.render(
   <React.StrictMode>
-    <SCP>
+    <SerachOptionProvider>
       <App />
-    </SCP>
+    </SerachOptionProvider>
   </React.StrictMode>
 );
