@@ -1,3 +1,5 @@
+// HOME PAGE ELEMENT - TYPE SUMMARY
+
 import useFetech from "../../hooks/useFetch";
 import "./propertyList.css";
 

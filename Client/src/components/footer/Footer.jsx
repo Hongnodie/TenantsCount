@@ -1,3 +1,5 @@
+// ORGANIZATIONAL LINK
+
 import "./footer.css";
 
 const Footer = () => {

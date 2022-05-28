@@ -1,3 +1,5 @@
+// HOMEPAGE CITY BLOCK
+
 import useFetech from "../../hooks/useFetch";
 import "./featured.css";
 

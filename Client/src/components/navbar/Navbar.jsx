@@ -1,3 +1,5 @@
+// ICON & LOGIN/OUT
+
 import "./navbar.css"
 
 const Navbar = () => {

@@ -1,3 +1,5 @@
+// HOMEPAGE FEATURED SECTION
+
 import useFetech from "../../hooks/useFetch";
 import "./featuredProperties.css";
 
