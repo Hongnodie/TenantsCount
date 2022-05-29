@@ -1,10 +1,10 @@
 // ITEM DETAIL PAGE
 
-import "./hotel.css";
-import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/header/Header";
+import "./detailpage.css";
+import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import MailList from "../../components/mailList/MailList";
-import Footer from "../../components/footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
@@ -60,8 +60,8 @@ const Hotel = () => {
 
   return (
     <div>
-      <Navbar />
-      <Header type="list" />
+      <Header />
+      <SearchBar type="list" />
       { loadingStatus? ("Detail Page loading") : (<>
       <div className="hotelContainer">
         {open && (

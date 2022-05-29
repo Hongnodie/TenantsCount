@@ -1,9 +1,9 @@
 // HOMEPAGE FEATURED SECTION
 
 import useFetech from "../../hooks/useFetch";
-import "./featuredProperties.css";
+import "./featureBlock.css";
 
-const FeaturedProperties = () => {
+const FeatureBlock = () => {
 
   const {data,loadingStatus, error, reFetch} = useFetech("http://localhost:5000/hotel/?featured=true&limit=2");
 
@@ -37,4 +37,4 @@ const FeaturedProperties = () => {
   );
 };
 
-export default FeaturedProperties;
+export default FeatureBlock;

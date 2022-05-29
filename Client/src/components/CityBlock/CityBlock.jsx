@@ -1,9 +1,9 @@
 // HOMEPAGE CITY BLOCK
 
 import useFetech from "../../hooks/useFetch";
-import "./featured.css";
+import "./cityBlock.css";
 
-const Featured = () => {
+const CityBlock = () => {
 
   const {data,loadingStatus, error, reFetch} = useFetech("http://localhost:5000/counter/city?cities=London,Berlin,Singapole");
 
@@ -52,4 +52,4 @@ const Featured = () => {
   );
 };
 
-export default Featured;
+export default CityBlock;

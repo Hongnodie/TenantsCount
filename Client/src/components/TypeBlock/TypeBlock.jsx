@@ -1,9 +1,9 @@
 // HOME PAGE ELEMENT - TYPE SUMMARY
 
 import useFetech from "../../hooks/useFetch";
-import "./propertyList.css";
+import "./typeBlock.css";
 
-const PropertyList = () => {
+const TypeBlock = () => {
 
   const {data,loadingStatus, error, reFetch} = useFetech("http://localhost:5000/counter/type");
 
@@ -45,4 +45,4 @@ const PropertyList = () => {
   );
 };
 
-export default PropertyList;
+export default TypeBlock;

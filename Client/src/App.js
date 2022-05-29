@@ -3,17 +3,18 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Hotel from "./pages/hotel/Hotel";
-import List from "./pages/list/List";
+import Home from "./pages/HomePage/Home";
+import Detail from "./pages/DetailPage/detailpage";
+import ItemList from "./pages/ListPage/ItemList";
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/hotel" element={<List/>}/>
-        <Route path="/hotel/:id" element={<Hotel/>}/>
+        <Route path="/hotel" element={<ItemList/>}/>
+        <Route path="/hotel/:id" element={<Detail/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,6 +1,6 @@
-import "./searchItem.css";
+import "./listItemBlock.css";
 
-const SearchItem = ({item}) => {
+const ListItemBlock = ({item}) => {
   return (
     <div className="searchItem">
       <img
@@ -41,4 +41,4 @@ const SearchItem = ({item}) => {
   );
 };
 
-export default SearchItem;
+export default ListItemBlock;
