@@ -1,8 +1,8 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 // SETUP/INITIATE "STATE" PROPERTY TO BE SPREAD AMONG COMPONENTS
 const INITIAL_STATE ={
-    user: null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
     onLoading: false,
     error: null
 };
@@ -51,6 +51,10 @@ export const AuthContextProvider = ({children}) => {
 
     // "dispatcher" is a function but parsed as a property 
     const [authState, authDispatcher] = useReducer(authActionResponder, INITIAL_STATE);
+
+    useEffect(()=>{
+        localStorage.setItem("user", JSON.stringify(state.user))
+    }, [state.user])
 
     return (
         <authContext.Provider 
