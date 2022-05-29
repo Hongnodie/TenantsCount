@@ -53,7 +53,7 @@ export const AuthContextProvider = ({children}) => {
         <authContext.Provider 
             value={{
                 user: authState.user,
-                onLoading: authState.loading,
+                onLoading: authState.onLoading,
                 error: authState.error,
                 authDispatcher
             }}
