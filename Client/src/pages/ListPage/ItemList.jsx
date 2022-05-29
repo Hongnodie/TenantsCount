@@ -9,7 +9,7 @@ import SearchItem from "../../components/ListItemBlock/ListItemBlock";
 
 import useFetech from "../../hooks/useFetch";
 
-const List = () => {
+const ItemList = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
@@ -108,4 +108,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default ItemList;
