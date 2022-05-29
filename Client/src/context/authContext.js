@@ -46,8 +46,8 @@ export const AuthContextProvider = ({children}) => {
     const [authState, authDispatcher] = useReducer(authActionResponder, INITIAL_STATE);
 
     useEffect(()=>{
-        localStorage.setItem("user", JSON.stringify(state.user))
-    }, [state.user])
+        localStorage.setItem("user", JSON.stringify(authState.user))
+    }, [authState.user])
 
     return (
         <authContext.Provider 

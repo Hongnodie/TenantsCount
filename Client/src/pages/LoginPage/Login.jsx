@@ -4,7 +4,7 @@ import {authContext} from "../../context/authContext";
 import "./login.css";
 
 const Login = () => {
-    cosnt [credentialInfo, setCredentialInfo] = useState({
+    const [credentialInfo, setCredentialInfo] = useState({
         username: undefined,
         password: undefined,
     })
@@ -15,7 +15,7 @@ const Login = () => {
         setCredentialInfo(prev=>({...prev,[e.target.id]:e.target.value}))
     }
 
-    const handleClick =(e) => {
+    const handleClick =async (e) => {
         e.preventDefault();
         authDispatcher({type:"startlogin"})
         try {
