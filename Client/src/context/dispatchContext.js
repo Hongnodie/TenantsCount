@@ -34,11 +34,12 @@ export const SerachOptionProvider = ({children}) => {
     const [stateValue, dispatcher] = useReducer(actionResponder, INITIAL_STATE);
 
     return (
-        <dispatchContext.Provider value={{
-            hotelcity:stateValue.hotelcity, 
-            dates:stateValue.dates, 
-            options: stateValue.options, 
-            dispatcher}}>
-            {children}
+        <dispatchContext.Provider 
+            value={{
+                hotelcity:stateValue.hotelcity, 
+                dates:stateValue.dates, 
+                options: stateValue.options, 
+                dispatcher}}>
+                {children}
         </dispatchContext.Provider>)
 }
