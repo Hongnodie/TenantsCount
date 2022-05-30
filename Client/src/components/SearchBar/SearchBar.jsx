@@ -3,10 +3,8 @@
 import {
   faBed,
   faCalendarDays,
-  faCar,
   faPerson,
   faPlane,
-  faTaxi,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./searchBar.css";
@@ -64,24 +62,12 @@ const SearchBar = ({ type }) => {
         <div className="headerList">
           <div className="headerListItem active">
             <FontAwesomeIcon icon={faBed} />
-            <span>Browse by Search</span>
+            <span><a href="/" style={{color:"inherit", textDecoration:"none"}}>Browse by Search</a></span>
           </div>
           <div className="headerListItem">
             <FontAwesomeIcon icon={faPlane} />
-            <span>View on Map</span>
+            <span><a href="/mapview" style={{color:"inherit", textDecoration:"none"}}>View on Map</a></span>
           </div>
-          {/* <div className="headerListItem">
-            <FontAwesomeIcon icon={faCar} />
-            <span>Car rentals</span>
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faBed} />
-            <span>Attractions</span>
-          </div>
-          <div className="headerListItem">
-            <FontAwesomeIcon icon={faTaxi} />
-            <span>Airport taxis</span>
-          </div> */}
         </div>
         {type !== "list" && (
           <>
@@ -98,7 +84,7 @@ const SearchBar = ({ type }) => {
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
                 <input
                   type="text"
-                  placeholder="Where are you going?"
+                  placeholder="Which City?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
                 />
@@ -108,9 +94,9 @@ const SearchBar = ({ type }) => {
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
-                >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
+                >{`${format(dates[0].startDate, "MM/yyyy")} to ${format(
                   dates[0].endDate,
-                  "MM/dd/yyyy"
+                  "MM/yyyy"
                 )}`}</span>
                 {openDate && (
                   <DateRange
