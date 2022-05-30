@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 
-axios.defaults.baseURL = '/';
+axios.defaults.baseURL = 'http://localhost:5000';
 
 const useFetch = (url) => {
     const [data, setData] = useState([]);

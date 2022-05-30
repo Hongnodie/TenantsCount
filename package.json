@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node Server/index.js --ignore Client",
     "install": "cd Server && npm i",
-    "build": "cd Client && npm run build"
+    "build": "cd Client && npm run build",
+    "DevStartServer": "nodemon Server/index.js"
   },
   "repository": {
     "type": "git",
