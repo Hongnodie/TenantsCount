@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
                 httpOnly: true,
             })
             .status(200)
-            .json({otherDetails});
+            .json(otherDetails);
 	} catch (error) {
 		res.status(500).json(error);
 	}

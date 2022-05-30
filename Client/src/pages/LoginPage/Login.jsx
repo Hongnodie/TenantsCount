@@ -3,6 +3,8 @@ import {useContext, useState} from "react";
 import {authContext} from "../../context/authContext";
 import "./login.css";
 
+axios.defaults.baseURL = 'http://localhost:5000';
+
 const Login = () => {
     const [credentialInfo, setCredentialInfo] = useState({
         username: undefined,
@@ -20,9 +22,11 @@ const Login = () => {
         authDispatcher({type:"startlogin"})
         try {
             const res = await axios.post("/auth/login", credentialInfo)
+            // console.log(res.data);
             authDispatcher({type:"loginSuccess", payload: res.data})
         } catch (err) {
             authDispatcher({type:"loginFail", payload: err.response.data})
+            // console.log(err.response.data)
         }
         // TEST
         console.log(user);
@@ -34,7 +38,8 @@ const Login = () => {
                 <input type="text" placeholder="username" id="username" className="username" onChange={handleChange} />
                 <input type="text" placeholder="password" id="password" className="password" onChange={handleChange} />
                 <button className="lButton" onClick={handleClick}>Login</button>
-                {error && <span>{error.message}</span>}
+                {user && <span>{user.username} logged in</span>}
+                {error && <span>{error}</span>}
             </div>
         </div>
     )
