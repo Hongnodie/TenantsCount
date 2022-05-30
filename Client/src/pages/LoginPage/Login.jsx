@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useContext, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {authContext} from "../../context/authContext";
 import "./login.css";
 
@@ -13,6 +14,8 @@ const Login = () => {
 
     const {user, onLoading, error, authDispatcher} =useContext(authContext);
 
+    const navigate =useNavigate();
+
     const handleChange =(e) => {
         setCredentialInfo(prev=>({...prev,[e.target.id]:e.target.value}))
     }
@@ -24,12 +27,12 @@ const Login = () => {
             const res = await axios.post("/auth/login", credentialInfo)
             // console.log(res.data);
             authDispatcher({type:"loginSuccess", payload: res.data})
+            // navigate('/');
         } catch (err) {
             authDispatcher({type:"loginFail", payload: err.response.data})
             // console.log(err.response.data)
         }
-        // TEST
-        console.log(user);
+        // console.log(user);
     }
 
     return (
@@ -37,7 +40,7 @@ const Login = () => {
             <div className="lContainer">
                 <input type="text" placeholder="username" id="username" className="username" onChange={handleChange} />
                 <input type="text" placeholder="password" id="password" className="password" onChange={handleChange} />
-                <button className="lButton" onClick={handleClick}>Login</button>
+                <button className="lButton" onClick={handleClick} disabled={onLoading} >Login</button>
                 {user && <span>{user.username} logged in</span>}
                 {error && <span>{error}</span>}
             </div>
