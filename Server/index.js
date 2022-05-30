@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config({path: __dirname + '/.env'});
 
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -14,17 +15,17 @@ const householdRoute = require('./Routes/Accomon/householdRoute');
 const pinRoute = require('./Routes/Mapview/pinRoute');
 const counterRoute = require('./Routes/Counter/counterRoute');
 
-dotenv.config();
 
 // MIDDLEWARE - parsing object
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
 
-app.get('/',(req,res)=> {
-res.send("Server is running");
-});
+// app.get('/',(req,res)=> {
+// res.send("Server is running");
+// });
 
+// console.log(process.env);
 const connect = async () => {
     await mongoose
     .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true})
@@ -48,6 +49,15 @@ app.use('/hotelroom', hotelroomRoute);
 app.use('/household', householdRoute);
 app.use('/mapview', pinRoute);
 app.use('/counter', counterRoute);
+
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(__dirname + '/../Client/build'));
+
+    app.get("*", (req, res) => {
+        res.sendFile(__dirname + "/../Client/build/index.html");
+    })
+}
 
 app.listen(5000,()=>{
     connect();
