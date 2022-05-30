@@ -19,7 +19,7 @@ const ItemList = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  const {data,loadingStatus, error, reFetch} = useFetech(`http://localhost:5000/hotel?city=${destination}&min=${min || 0}&max=${max || 999}`);
+  const {data,loadingStatus, error, reFetch} = useFetech(`/hotel?city=${destination}&min=${min || 0}&max=${max || 999}`);
 
   const handleClick = () => {
     reFetch();

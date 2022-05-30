@@ -27,7 +27,7 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const {data,loadingStatus, error} = useFetech(`http://localhost:5000/hotel/${locationId}`);
+  const {data,loadingStatus, error} = useFetech(`/hotel/${locationId}`);
 
   // const {dates, options, dispatcher} = useContext(dispatchContext);
 

@@ -5,7 +5,7 @@ import "./featureBlock.css";
 
 const FeatureBlock = () => {
 
-  const {data,loadingStatus, error, reFetch} = useFetech("http://localhost:5000/hotel/?featured=true&limit=2");
+  const {data,loadingStatus, error, reFetch} = useFetech("/hotel/?featured=true&limit=2");
 
   return (
     <div className="fp">

@@ -5,7 +5,7 @@ import "./typeBlock.css";
 
 const TypeBlock = () => {
 
-  const {data,loadingStatus, error, reFetch} = useFetech("http://localhost:5000/counter/type");
+  const {data,loadingStatus, error, reFetch} = useFetech("/counter/type");
 
   // console.log(data);
 
