@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = '/';
 
 const useFetech = (url) => {
     const [data, setData] = useState([]);
