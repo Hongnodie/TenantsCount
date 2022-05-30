@@ -1,11 +1,11 @@
 // HOMEPAGE FEATURED SECTION
 
-import useFetech from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import "./featureBlock.css";
 
 const FeatureBlock = () => {
 
-  const {data,loadingStatus, error, reFetch} = useFetech("/hotel/?featured=true&limit=2");
+  const {data,loadingStatus, error, reFetch} = useFetch("/hotel/?featured=true&limit=2");
 
   return (
     <div className="fp">

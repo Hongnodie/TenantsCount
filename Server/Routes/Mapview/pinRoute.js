@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
 });
 
 //GET ALL PINS
-router.get("/", async (req, res) => {
+router.get("/allpin", async (req, res) => {
     try {
         const pins = await Pin.find();
         res.status(200).json(pins);

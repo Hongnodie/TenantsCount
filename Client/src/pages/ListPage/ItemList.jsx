@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/ListItemBlock/ListItemBlock";
 
-import useFetech from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 const ItemList = () => {
   const location = useLocation();
@@ -19,7 +19,7 @@ const ItemList = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  const {data,loadingStatus, error, reFetch} = useFetech(`/hotel?city=${destination}&min=${min || 0}&max=${max || 999}`);
+  const {data,loadingStatus, error, reFetch} = useFetch(`/hotel?city=${destination}&min=${min || 0}&max=${max || 999}`);
 
   const handleClick = () => {
     reFetch();

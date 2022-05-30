@@ -1,11 +1,11 @@
 // HOME PAGE ELEMENT - TYPE SUMMARY
 
-import useFetech from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import "./typeBlock.css";
 
 const TypeBlock = () => {
 
-  const {data,loadingStatus, error, reFetch} = useFetech("/counter/type");
+  const {data,loadingStatus, error, reFetch} = useFetch("/counter/type");
 
   // console.log(data);
 

@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = '/';
 
-const useFetech = (url) => {
+const useFetch = (url) => {
     const [data, setData] = useState([]);
     const [loadingStatus, setLoadingStatus] = useState(false);
     const [error, setError] = useState(false);
@@ -39,4 +39,4 @@ const useFetech = (url) => {
     return {data, loadingStatus, error, reFetch}
 };
 
-export default useFetech;
+export default useFetch;

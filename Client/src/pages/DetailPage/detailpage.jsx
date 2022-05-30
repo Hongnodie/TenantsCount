@@ -15,7 +15,7 @@ import {
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import useFetech from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 import {dispatchContext} from "../../context/dispatchContext";
 
@@ -27,7 +27,7 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const {data,loadingStatus, error} = useFetech(`/hotel/${locationId}`);
+  const {data,loadingStatus, error} = useFetch(`/hotel/${locationId}`);
 
   // const {dates, options, dispatcher} = useContext(dispatchContext);
 

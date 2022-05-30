@@ -1,11 +1,11 @@
 // HOMEPAGE CITY BLOCK
 
-import useFetech from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import "./cityBlock.css";
 
 const CityBlock = () => {
 
-  const {data,loadingStatus, error, reFetch} = useFetech("/counter/city?cities=London,Berlin,Singapole");
+  const {data,loadingStatus, error, reFetch} = useFetch("/counter/city?cities=London,Berlin,Singapole");
 
   // console.log(data);
 
