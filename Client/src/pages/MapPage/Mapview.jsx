@@ -1,13 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import useFetch from "../../hooks/useFetch";
+// import useFetch from "../../hooks/useFetch";
+import axios from "axios";
+
 import Map, {Marker, Popup} from 'react-map-gl';
 
 import "./mapview.css";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
+axios.defaults.baseURL = "/";
 // TODO: HIDE
 // mapboxgl.accessToken = "pk.eyJ1IjoiZ3JhbnRnYW4iLCJhIjoiY2wzaWd1bzJuMDJhbjNwcGQzbHZ2aW9ocSJ9.U-DLPr6SzIG6LYQ-Q5qhRw";
  
@@ -19,8 +23,15 @@ export default function Mapview() {
     // const [lat, setLat] = useState(-34.921230);
     // const [zoom, setZoom] = useState(12);
 
+    // AUTH
+    const [currentUser, setCurrentUser] = useState(window.localStorage.getItem('user'));
+
     const [pins, setPins] = useState([]);
     const [currentPlaceId, setCurrentPlaceId] = useState(null);
+    const [newPlace, setNewPlace] = useState(null);
+
+    const [title, setTitle] = useState(null);
+    const [desc, setDesc] = useState(null);
 
     const [viewport, setViewport] = useState({
         latitude: 138.599503,
@@ -30,9 +41,55 @@ export default function Mapview() {
         pitch: 0
     });
 
+    const getPins = async () => {
+        try {
+            const allPins = await axios.get("/mapview/allpin");
+            // console.log(allPins);
+            setPins(allPins.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // useEffect(() => {
+        // getPins();
+    // }, [])
+
+    // HANDLE DBCLICK ACTION - CREATE IF LOGIN
+    const handleAddClick = (e) => {
+        // console.log(viewport.viewState)
+        // const [long, lat] = viewport.viewState;
+        let long = viewport.viewState.longitude;
+        let lat = viewport.viewState.latitude;
+        console.log(long);
+        setNewPlace({
+            lat,
+            long,
+        });
+    }
+
     const handleMarkerClick = (id, lat, long) => {
-        setCurrentPlaceId(id);
+        // setCurrentPlaceId(id);
         setViewport({ ...viewport, latitude: lat, longitude: long })
+    }
+
+    // NEWPIN - on Submit
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const newPin = {
+            username: currentUser,
+            title,
+            desc,
+            lat: newPlace.lat,
+            long: newPlace.long,
+        }
+        try {
+            const res = await axios.post('/mapview', newPin);
+            setPins([...pins, res.data]);
+            setNewPlace(null);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // const {data,loadingStatus, error, reFetch} = useFetch("/allpin");
@@ -67,6 +124,7 @@ export default function Mapview() {
             </div> */}
 
             <Map
+            // {...viewport}
                 initialViewState={{
                 longitude: 138.599503,
                 latitude: -34.921230,
@@ -76,6 +134,7 @@ export default function Mapview() {
                 mapStyle="mapbox://styles/grantgan/cl3igxdwk000a16pfq05ibitz"
                 mapboxAccessToken="pk.eyJ1IjoiZ3JhbnRnYW4iLCJhIjoiY2wzaWd1bzJuMDJhbjNwcGQzbHZ2aW9ocSJ9.U-DLPr6SzIG6LYQ-Q5qhRw"
                 onMoveEnd={setViewport}
+                onDblClick={currentUser && handleAddClick}
             />
             {/* {pins.map((singlePin)=> (                
                 return (
@@ -86,6 +145,7 @@ export default function Mapview() {
                     <img src="./pin.png" />
                     </Marker>)
             } */}
+            {/* SHOW ALL PINS */}
             {pins.map((singlePin)=> {
                 return (
                 <div key={singlePin._id}>
@@ -119,7 +179,35 @@ export default function Mapview() {
                     }
                 </div>
             )})}
-
+            {/* CREATE PIN */}
+            {newPlace &&
+                (
+                    <Popup
+                        latitude={newPlace.lat}
+                        longitude={newPlace.long}
+                        closeButton={true}
+                        closeOnClick={false}
+                        anchor="left"
+                        onClose={() => setNewPlace(null)}>
+                        <div>
+                            <form onSubmit={handleSubmit}>
+                                <label>Title</label>
+                                <input
+                                    placeholder='Enter a Title...'
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                                <label>Review</label>
+                                <textarea
+                                    rows="4"
+                                    placeholder='Say something about the place...'
+                                    onChange={(e) => setDesc(e.target.value)}
+                                />
+                                <button className='submitButton' type='submit'>Add Pin</button>
+                            </form>
+                        </div>
+                    </Popup>
+                )
+            }
         </div>
     );
 }

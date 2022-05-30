@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const Pin = require("../../Models/Mapview/Pin");
+const { verifyToken, verifyUser, verifyAdmin } = require("../../Other/Utilities/token");
 
 //CREATE PIN
-router.post("/", async (req, res) => {
+router.post("/", verifyUser, async (req, res) => {
 	const newPin = new Pin(req.body);
 	try {
 		const savedPin = await newPin.save();
