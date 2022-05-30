@@ -27,7 +27,7 @@ const Login = () => {
             const res = await axios.post("/auth/login", credentialInfo)
             // console.log(res.data);
             authDispatcher({type:"loginSuccess", payload: res.data})
-            // navigate('/');
+            navigate('/');
         } catch (err) {
             authDispatcher({type:"loginFail", payload: err.response.data})
             // console.log(err.response.data)
