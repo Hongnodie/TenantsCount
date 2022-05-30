@@ -59,7 +59,8 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.listen(5000,()=>{
+const PORT = process.env.PORT || 5000;
+app.listen(PORT,()=>{
     connect();
     console.log('server is running on node.js plus nodemon');
 })
