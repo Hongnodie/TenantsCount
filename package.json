@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node Server/index.js --ignore Client",
-    "build": "cd Client && npm run build"
+    "build": "cd Client && npm run build",
+    "install": "cd server && npm i && cd ../client && npm i"
   },
   "repository": {
     "type": "git",
