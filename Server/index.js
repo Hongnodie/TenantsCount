@@ -19,7 +19,11 @@ dotenv.config();
 // MIDDLEWARE - parsing object
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors());
+
+app.get('/',(req,res)=> {
+res.send("Server is running");
+});
 
 const connect = async () => {
     await mongoose
@@ -35,10 +39,6 @@ mongoose.connection.on("disconnected", ()=> {
 
 mongoose.connection.on("connected", ()=> {
     console.log("mongoDB connected")
-})
-
-app.get("/", (req,res)=>{
-    res.send("hello")
 })
 
 // MIDDLEWARE -routing
