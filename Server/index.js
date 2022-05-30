@@ -33,13 +33,12 @@ const connect = async () => {
 }
 
 // TRACK Disconnect or re-connect
-mongoose.connection.on("disconnected", ()=> {
-    console.log("mongoDB disconnected")
-})
-
-mongoose.connection.on("connected", ()=> {
-    console.log("mongoDB connected")
-})
+// mongoose.connection.on("disconnected", ()=> {
+//     console.log("mongoDB disconnected")
+// })
+// mongoose.connection.on("connected", ()=> {
+//     console.log("mongoDB connected")
+// })
 
 // MIDDLEWARE -routing
 app.use('/user', userRoute);
