@@ -25,6 +25,9 @@ const UserSchema = new mongoose.Schema(
 			min: 8,
             max: 20,
 		},
+		userpins:{
+			type: Array,
+		},
 		isAdmin: {
 			type: Boolean,
 			default: false,
